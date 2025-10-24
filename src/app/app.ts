@@ -2,13 +2,13 @@ import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { Navbar } from './components/shared/navbar/navbar'; // Asegúrate que la ruta a tu Navbar sea correcta
+import { NavbarComponent } from './components/shared/navbar/navbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   // Importa CommonModule (para ngIf/ngClass), RouterOutlet y tu NavbarComponent
-  imports: [CommonModule, RouterOutlet, Navbar], 
+  imports: [CommonModule, RouterOutlet, NavbarComponent], 
   templateUrl: './app.html',
   styleUrl: './app.css' // o .scss
 })
