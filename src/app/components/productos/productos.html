@@ -1,0 +1,20 @@
+<div class="flex flex-col">
+    <div class="flex justify-between mx-[4rem]">
+        <!-- MODIFICADO: Muestra la cantidad de productos de la lista ya ordenada/filtrada -->
+        <p>{{ sortedProductList().length }} Productos</p>
+        
+        <!-- MODIFICADO: Usamos el bindeo de señal [ngModel] y (ngModelChange) -->
+        <p-cascadeselect 
+            [ngModel]="selectedFilter()" 
+            (ngModelChange)="selectedFilter.set($event)" 
+            [options]="filters" 
+            optionLabel="name" 
+            optionGroupLabel="name" 
+            [style]="{ minWidth: '14rem' }" 
+            placeholder="Selecciona un filtro" 
+        />
+    </div>
+
+    <!-- MODIFICADO: Pasamos la nueva señal computada 'sortedProductList' al hijo -->
+    <product-list [productList]="sortedProductList()"></product-list>
+</div>

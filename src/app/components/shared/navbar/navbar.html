@@ -1,0 +1,55 @@
+
+<div class="card w-[95%] mx-10 mt-5 fixed">
+    <p-megamenu [model]="items" [style]="{ 'border-radius': '3rem', display: 'flex' }" class="p-4 bg-surface-0 dark:bg-surface-900">
+        <ng-template #start>
+            <img class="h-10 w-10" src="/logo.jpg" alt="">
+        </ng-template>
+
+        <!-- 
+          NOTA: Tenías un buscador duplicado aquí, en un <ng-template> sin nombre. 
+          Lo he eliminado para evitar redundancia, dejando solo el buscador en la sección #end.
+        -->
+        
+
+        <ng-template #item let-item>
+            <a  [routerLink]="item.routerLink"  *ngIf="item.root" pRipple class="flex items-center cursor-pointer px-4 py-2 overflow-hidden relative font-semibold text-lg uppercase hover:bg-blue-500 hover:text-white ">
+                <i [ngClass]="item.icon"></i>
+                <span class="ml-2">{{ item.label }}</span>
+            </a>
+            <a  *ngIf="!item.root && !item.image" class="flex items-center p-4 cursor-pointer mb-2 gap-2">
+                <span class="inline-flex items-center justify-center rounded-full bg-blue-500 text-primary-contrast w-12 h-12">
+                    <i [ngClass]="item.icon + ' text-lg'"></i>
+                </span>
+                <span  class="inline-flex flex-col gap-1">
+                    <span  class="font-medium text-lg text-white dark:text-black">{{ item.label }}</span>
+                    <span class="whitespace-nowrap">{{ item.subtext }}</span>
+                </span>
+            </a>
+            <div *ngIf="item.image" class="flex flex-col items-start gap-4">
+                <img [src]="item.image" alt="megamenu-demo" class="w-full" />
+                <span>{{ item.subtext }}</span>
+                <p-button [label]="item.label" [outlined]="true"></p-button>
+            </div>
+            
+        </ng-template>
+        
+        
+        <ng-template #end>
+            
+           <div class="flex items-center gap-4">
+            <!--  -->
+
+        
+
+        <div (mouseleave)="changeVisibility()" (mouseenter)="changeVisibility()" class="card flex justify-center">
+            <p-avatar image="moreInfo.png" shape="circle" />
+            @if(menuVisible){
+                <p-menu  class="fixed top-15 right-10 " [model]="itemsMenu" />
+            }
+        </div>
+
+    </div>
+            
+        </ng-template>
+    </p-megamenu>
+</div>
